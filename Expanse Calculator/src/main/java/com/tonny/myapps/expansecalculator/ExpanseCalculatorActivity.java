@@ -17,9 +17,9 @@ public class ExpanseCalculatorActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expanse_calculator);
-        expanseName=findViewById(R.id.etExpanceName);
-        expanseDesc=findViewById(R.id.etExpanseDesc);
-        addExpanse=findViewById(R.id.btAddExpance);
+        expanseName = (EditText) findViewById(R.id.etExpanceName);
+        expanseDesc = (EditText) findViewById(R.id.etExpanseDesc);
+        addExpanse = (Button) findViewById(R.id.btAddExpance);
 
     }
 
