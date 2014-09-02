@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ExpanseCalculatorActivity">
+
+    <TextView
+        android:id="@+id/tvCreateExpanseHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        android:gravity="center"
+        android:text="Create New Shared Expanse" />
+
+    <EditText
+        android:id="@+id/etExpanceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvCreateExpanseHeader"
+        android:layout_marginTop="57dp"
+        android:hint="Name" />
+
+    <EditText
+        android:id="@+id/etExpanseDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/etExpanceName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/etExpanceName"
+        android:layout_below="@+id/etExpanceName"
+        android:hint="Descrition" />
+
+    <Button
+        android:id="@+id/btSubmitExpanse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/etExpanseDesc"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/etExpanseDesc"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:text="Create Expanse" />
+
+</RelativeLayout>
