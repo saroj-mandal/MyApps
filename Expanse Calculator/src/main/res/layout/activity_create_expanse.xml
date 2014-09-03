@@ -19,7 +19,7 @@
         android:text="Create New Shared Expanse" />
 
     <EditText
-        android:id="@+id/etExpanceName"
+        android:id="@+id/etExpanseName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -32,11 +32,11 @@
         android:id="@+id/etExpanseDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/etExpanceName"
+        android:layout_alignEnd="@+id/etExpanseName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/etExpanceName"
-        android:layout_below="@+id/etExpanceName"
+        android:layout_alignRight="@+id/etExpanseName"
+        android:layout_below="@+id/etExpanseName"
         android:hint="Descrition" />
 
     <Button
@@ -49,6 +49,7 @@
         android:layout_alignRight="@+id/etExpanseDesc"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
+        android:onClick="createExpanse"
         android:text="Create Expanse" />
 
 </RelativeLayout>

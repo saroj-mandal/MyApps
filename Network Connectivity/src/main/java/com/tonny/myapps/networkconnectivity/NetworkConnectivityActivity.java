@@ -1,19 +1,36 @@
 package com.tonny.myapps.networkconnectivity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Random;
 
 
 public class NetworkConnectivityActivity extends Activity {
+    private static String myUrl = "https://graph.facebook.com/saroj09";
     TextView responseView;
     TextView connectivityTest;
     EditText inputUrl;
     RelativeLayout userContentArea;
     TextView textView;
     String resp;
-    private static String myUrl = "https://graph.facebook.com/saroj09";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +72,6 @@ public class NetworkConnectivityActivity extends Activity {
                 final TextView textDynamic = new TextView(this);
                 final LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
                 textDynamic.setId(prevTvId + 1);
-                params.addRule(RelativeLayout.BELOW, prevTvId);
                 textDynamic.setText(resp);
                 textDynamic.setBackgroundColor(random.nextInt() | 0xff000000);
                 textDynamic.setTextColor(Color.RED);
@@ -74,6 +90,29 @@ public class NetworkConnectivityActivity extends Activity {
     private boolean isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return null != connectivityManager.getActiveNetworkInfo() && connectivityManager.getActiveNetworkInfo().isConnected();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.network_connectivity, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public TextView getTextView() {
+        return new TextView(this);
     }
 
     private class DownloadWebpage extends AsyncTask<String, Void, String> {
@@ -125,7 +164,6 @@ public class NetworkConnectivityActivity extends Activity {
                 final TextView textDynamic = getTextView();
                 final LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
                 textDynamic.setId(prevTvId + 1);
-                params.addRule(RelativeLayout.BELOW, prevTvId);
                 textDynamic.setText(resp);
                 textDynamic.setBackgroundColor(random.nextInt() | 0xff000000);
                 textDynamic.setTextColor(Color.RED);
@@ -137,28 +175,5 @@ public class NetworkConnectivityActivity extends Activity {
                 userContentArea.addView(textDynamic, params);
             }
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.network_connectivity, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public TextView getTextView() {
-        return new TextView(this);
     }
 }

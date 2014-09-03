@@ -20,18 +20,12 @@
         android:gravity="center"
         android:text="No expanse!" />
 
+
     <ListView
         android:id="@+id/lvExistingExpanse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvExpanseHomeHeader"></ListView>
-
-    <Button
-        android:id="@+id/btAddExpance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lvExistingExpanse"
-        android:text="Add Expance" />
-
+        android:layout_below="@+id/tvExpanseHomeHeader"
+        android:scrollbars="vertical"></ListView>
 
 </RelativeLayout>

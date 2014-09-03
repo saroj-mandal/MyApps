@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.tonny.myapps.expansecalculator.beans.Expanse;
 import com.tonny.myapps.expansecalculator.beans.Profile;
 
 import java.text.ParseException;
@@ -85,7 +86,6 @@ public class ExpanseDBManager extends SQLiteOpenHelper {
     public long createNewProfile(Profile profile) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(KEY_ID, profile.getId());
         contentValues.put(KEY_FIRST_NAME, profile.getFirstName());
         contentValues.put(KEY_LAST_NAME, profile.getLastName());
         contentValues.put(KEY_EMAIL_ID, profile.getEmailId());
@@ -99,17 +99,53 @@ public class ExpanseDBManager extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String query = "SELECT * FROM " + PROFILE + " WHERE " + KEY_EMAIL_ID + "='" + emailId + "'";
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
-        Profile profile = new Profile();
+        Profile profile = null;
+        if (null != cursor) {
+            profile = new Profile();
+            cursor.moveToFirst();
+            profile.setId(cursor.getLong(cursor.getColumnIndex(KEY_ID)));
+            profile.setFirstName(cursor.getString(cursor.getColumnIndex(KEY_FIRST_NAME)));
+            profile.setLastName(cursor.getString(cursor.getColumnIndex(KEY_LAST_NAME)));
+            profile.setEmailId(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_ID)));
+            profile.setCreateDate(stringToDate(cursor.getString(cursor.getColumnIndex(KEY_CREATE_DATE))));
+            profile.setUpdateDate(stringToDate(cursor.getString(cursor.getColumnIndex(KEY_UPDATE_DATE))));
+        }
+        return profile;
+    }
+
+    public long createExpanse(Expanse expanse) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_NAME, expanse.getName());
+        contentValues.put(KEY_DESCRIPTION, expanse.getDescription());
+        contentValues.put(KEY_CREATE_DATE, getDateTime());
+        contentValues.put(KEY_UPDATE_DATE, getDateTime());
+        long status = sqLiteDatabase.insert(EXPANSE, null, contentValues);
+        return status;
+    }
+
+    public Expanse getExpanse() {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT * FROM " + EXPANSE;
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        Expanse expanse = null;
         if (null != cursor) {
             cursor.moveToFirst();
+            expanse = new Expanse();
+            expanse.setId(cursor.getLong(cursor.getColumnIndex(KEY_ID)));
+            expanse.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
+            expanse.setDescription(cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)));
+            expanse.setCreateDate(stringToDate(cursor.getString(cursor.getColumnIndex(KEY_CREATE_DATE))));
+            expanse.setUpdateDate(stringToDate(cursor.getString(cursor.getColumnIndex(KEY_UPDATE_DATE))));
         }
-        profile.setId(cursor.getLong(cursor.getColumnIndex(KEY_ID)));
-        profile.setFirstName(cursor.getString(cursor.getColumnIndex(KEY_FIRST_NAME)));
-        profile.setLastName(cursor.getString(cursor.getColumnIndex(KEY_LAST_NAME)));
-        profile.setEmailId(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_ID)));
-        profile.setCreateDate(stringToDate(cursor.getString(cursor.getColumnIndex(KEY_CREATE_DATE))));
-        profile.setUpdateDate(stringToDate(cursor.getString(cursor.getColumnIndex(KEY_UPDATE_DATE))));
-        return profile;
+        return expanse;
+    }
+
+    public Cursor getExpanseCursor() {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT " + KEY_ID + " AS _id, " + KEY_NAME + " AS name, " + KEY_DESCRIPTION + " AS description FROM " + EXPANSE;
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        return cursor;
     }
 
     private String getDateTime() {
