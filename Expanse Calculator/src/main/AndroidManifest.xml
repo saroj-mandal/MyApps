@@ -10,7 +10,7 @@
         <activity
             android:name=".ExpanseCalculatorActivity"
             android:label="@string/app_name">
-        <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,6 +19,12 @@
         <activity
             android:name=".CreateExpanseActivity"
             android:parentActivityName=".ExpanseCalculatorActivity" />
+        <activity
+            android:name=".ExpanseHomeActivity"
+            android:parentActivityName=".ExpanseCalculatorActivity" />
+        <activity
+            android:name=".ViewExpanseHistory"
+            android:parentActivityName=".ExpanseHomeActivity" />
 
     </application>
 

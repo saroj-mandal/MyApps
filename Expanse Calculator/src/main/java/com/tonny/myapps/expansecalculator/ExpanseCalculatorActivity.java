@@ -3,14 +3,10 @@ package com.tonny.myapps.expansecalculator;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.tonny.myapps.expansecalculator.utills.ExpanseDBManager;
@@ -18,26 +14,20 @@ import com.tonny.myapps.expansecalculator.utills.ExpanseDBManager;
 
 public class ExpanseCalculatorActivity extends Activity {
     TextView tvErrorMessage;
-    Editor shPrefEditor;
     ExpanseDBManager expanseDBManager;
-    ListView existingExpanses;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        expanseDBManager = new ExpanseDBManager(getApplicationContext());
         SharedPreferences sharedPreferences = getBaseContext().getSharedPreferences("isFirstTimeAppLaunch", MODE_PRIVATE);
         boolean isFirstTimeAppLaunch = sharedPreferences.getBoolean("isFirstTimeAppLaunch", true);
         if (isFirstTimeAppLaunch) {
             setContentView(R.layout.activity_welcome_expanse_calculator);
         } else {
-            setContentView(R.layout.activity_expanse_home);
-            String[] dbColumns = new String[]{"name", "description"};
-            int[] viewIds = new int[]{R.id.tvViewExpanseName, R.id.tvViewExpanseDesc};
-            existingExpanses = (ListView) findViewById(R.id.lvExistingExpanse);
-            Cursor cursor = expanseDBManager.getExpanseCursor();
-            SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.activity_expanse_item_fg_layout, cursor, dbColumns, viewIds);
-            existingExpanses.setAdapter(simpleCursorAdapter);
+            Intent openExpanseHomeActivity = new Intent(this, ExpanseHomeActivity.class);
+            startActivity(openExpanseHomeActivity);
+            finish();
         }
     }
 
