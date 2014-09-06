@@ -8,24 +8,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ExpanseCalculatorActivity">
 
-    <TextView
-        android:id="@+id/tvExpanseHomeHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:text="No expanse!" />
-
-
-    <ListView
-        android:id="@+id/lvExistingExpanse"
+    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/vpTabPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvExpanseHomeHeader"
-        android:scrollbars="vertical"></ListView>
+        android:layout_height="match_parent" />
+
 
 </RelativeLayout>
