@@ -22,15 +22,15 @@ public class ExpanseListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View ExpansesView = inflater.inflate(R.layout.expanse_fragment_layout, container, false);
+        View expanseListView = inflater.inflate(R.layout.expanse_fragment_layout, container, false);
         expanseDBManager = new ExpanseDBManager(getActivity());
         String[] dbColumns = new String[]{"name", "description"};
         int[] viewIds = new int[]{R.id.tvViewExpanseName, R.id.tvViewExpanseDesc};
-        existingExpanses = (ListView) ExpansesView.findViewById(R.id.lvExistingExpanse);
+        existingExpanses = (ListView) expanseListView.findViewById(R.id.lvExistingExpanse);
         Cursor cursor = expanseDBManager.getExpanseCursor();
         SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(getActivity(), R.layout.activity_expanse_item_fg_layout, cursor, dbColumns, viewIds);
         existingExpanses.setAdapter(simpleCursorAdapter);
-        return ExpansesView;
+        return expanseListView;
 
     }
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvRecordsHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:autoText="false"
+        android:gravity="center"
+        android:text="Records" />
+
+    <EditText
+        android:id="@+id/etFromDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tvRecordsHeader"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/tvRecordsHeader"
+        android:layout_below="@+id/tvRecordsHeader"
+        android:layout_marginRight="208dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="from"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/etToDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/tvRecordsHeader"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="to"
+        android:inputType="date" />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/etFromDate"
+        android:layout_centerHorizontal="true"></TableLayout>
+</RelativeLayout>

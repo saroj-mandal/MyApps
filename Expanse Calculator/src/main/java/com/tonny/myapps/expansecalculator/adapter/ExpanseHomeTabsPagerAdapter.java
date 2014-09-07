@@ -10,8 +10,8 @@ import com.tonny.myapps.expansecalculator.PersonsFragment;
 /**
  * Created by Tonny on 07-09-2014.
  */
-public class TabsPagerAdapter extends FragmentPagerAdapter {
-    public TabsPagerAdapter(FragmentManager fragmentManager) {
+public class ExpanseHomeTabsPagerAdapter extends FragmentPagerAdapter {
+    public ExpanseHomeTabsPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 

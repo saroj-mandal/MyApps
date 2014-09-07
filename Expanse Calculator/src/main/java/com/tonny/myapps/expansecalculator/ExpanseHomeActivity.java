@@ -8,16 +8,16 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.tonny.myapps.expansecalculator.adapter.TabsPagerAdapter;
+import com.tonny.myapps.expansecalculator.adapter.ExpanseHomeTabsPagerAdapter;
 
 /**
  * Created by smand6 on 9/4/2014.
  */
 public class ExpanseHomeActivity extends FragmentActivity implements ActionBar.TabListener {
 
-    private ViewPager viewPager;
-    private ActionBar actionBar;
-    private TabsPagerAdapter tabsPagerAdapter;
+    private ViewPager expanseHomeViewPager;
+    private ActionBar expanseHomeActionBar;
+    private ExpanseHomeTabsPagerAdapter expanseHomeTabsPagerAdapter;
     // Tab titles
     private String[] tabs = {"Expanses", "Persons"};
 
@@ -26,20 +26,20 @@ public class ExpanseHomeActivity extends FragmentActivity implements ActionBar.T
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expanse_home);
 
-        // Initilization
-        viewPager = (ViewPager) findViewById(R.id.vpTabPager);
-        tabsPagerAdapter = new TabsPagerAdapter(getSupportFragmentManager());
-        actionBar = getActionBar();
-        viewPager.setAdapter(tabsPagerAdapter);
-        actionBar.setHomeButtonEnabled(false);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        // Initialization
+        expanseHomeViewPager = (ViewPager) findViewById(R.id.vpExpanseHomeTabPager);
+        expanseHomeTabsPagerAdapter = new ExpanseHomeTabsPagerAdapter(getSupportFragmentManager());
+        expanseHomeActionBar = getActionBar();
+        expanseHomeViewPager.setAdapter(expanseHomeTabsPagerAdapter);
+        expanseHomeActionBar.setHomeButtonEnabled(false);
+        expanseHomeActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Adding Tabs
         for (String tabName : tabs) {
-            actionBar.addTab(actionBar.newTab().setText(tabName).setTabListener(this));
+            expanseHomeActionBar.addTab(expanseHomeActionBar.newTab().setText(tabName).setTabListener(this));
         }
         //on swiping the viewpager make respective tab selected
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        expanseHomeViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -48,7 +48,7 @@ public class ExpanseHomeActivity extends FragmentActivity implements ActionBar.T
             @Override
             public void onPageSelected(int position) {
                 // on changing the page make respected tab selected
-                actionBar.setSelectedNavigationItem(position);
+                expanseHomeActionBar.setSelectedNavigationItem(position);
             }
 
             @Override

@@ -9,7 +9,7 @@
     tools:context=".ExpanseCalculatorActivity">
 
     <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/vpTabPager"
+        android:id="@+id/vpExpanseHomeTabPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
