@@ -2,11 +2,9 @@ package com.tonny.myapps.expansecalculator;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 
 import com.tonny.myapps.expansecalculator.adapter.ExpanseHomeTabsPagerAdapter;
 
@@ -71,10 +69,5 @@ public class ExpanseHomeActivity extends FragmentActivity implements ActionBar.T
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 
-    }
-
-    public void viewExpanse(View view) {
-        Intent viewHistoryIntent = new Intent(this, ViewExpanseHistory.class);
-        startActivity(viewHistoryIntent);
     }
 }

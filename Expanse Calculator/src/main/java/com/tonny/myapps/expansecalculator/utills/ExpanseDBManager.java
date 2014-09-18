@@ -12,7 +12,9 @@ import com.tonny.myapps.expansecalculator.beans.Profile;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -20,14 +22,14 @@ import java.util.Locale;
  */
 public class ExpanseDBManager extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Expanse_Management";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String LOG = "ExpanseDBManager";
     // Table Names
     private static final String EXPANSE = "EXPANSE";
     private static final String DAILY_RECORDS = "DAILY_RECORDS";
     private static final String PROFILE = "PROFILE";
     // Common column names
-    private static final String KEY_ID = "id";
+    private static final String KEY_ID = "_id";
     private static final String KEY_CREATE_DATE = "create_date";
     private static final String KEY_UPDATE_DATE = "update_date";
     // EXPANSE Table - column names
@@ -124,27 +126,34 @@ public class ExpanseDBManager extends SQLiteOpenHelper {
         return status;
     }
 
-    public Expanse getExpanse() {
+    public List<Expanse> getExpanse() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String query = "SELECT * FROM " + EXPANSE;
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
-        Expanse expanse = null;
+        List<Expanse> expanseList = new ArrayList<Expanse>();
         if (null != cursor) {
             cursor.moveToFirst();
-            expanse = new Expanse();
-            expanse.setId(cursor.getLong(cursor.getColumnIndex(KEY_ID)));
-            expanse.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
-            expanse.setDescription(cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)));
-            expanse.setCreateDate(stringToDate(cursor.getString(cursor.getColumnIndex(KEY_CREATE_DATE))));
-            expanse.setUpdateDate(stringToDate(cursor.getString(cursor.getColumnIndex(KEY_UPDATE_DATE))));
+            while (cursor.moveToNext()) {
+                Expanse expanse = new Expanse();
+                expanse.setId(cursor.getLong(cursor.getColumnIndex(KEY_ID)));
+                expanse.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
+                expanse.setDescription(cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)));
+                expanse.setCreateDate(stringToDate(cursor.getString(cursor.getColumnIndex(KEY_CREATE_DATE))));
+                expanse.setUpdateDate(stringToDate(cursor.getString(cursor.getColumnIndex(KEY_UPDATE_DATE))));
+                expanseList.add(expanse);
+            }
         }
-        return expanse;
+        return expanseList;
     }
 
     public Cursor getExpanseCursor() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String query = "SELECT " + KEY_ID + " AS _id, " + KEY_NAME + " AS name, " + KEY_DESCRIPTION + " AS description FROM " + EXPANSE;
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        if (null != cursor) {
+            cursor.moveToFirst();
+
+        }
         return cursor;
     }
 
