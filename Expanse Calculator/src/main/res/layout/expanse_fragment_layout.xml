@@ -17,7 +17,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:gravity="center"
-        android:text="No expanse!" />
+        android:text="No expense!" />
 
 
     <ListView
@@ -26,5 +26,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvExpanseHomeHeader"
         android:scrollbars="vertical"></ListView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Expanse"
+        android:id="@+id/btCreateExpanse"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="clickHandler" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh List"
+        android:id="@+id/btRefreshExpanse"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/lvExistingExpanse"
+        android:layout_alignEnd="@+id/lvExistingExpanse"
+        android:onClick="clickHandler" />
 
 </RelativeLayout>

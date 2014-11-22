@@ -1,15 +1,17 @@
 package com.tonny.myapps.expansecalculator.beans;
 
 import java.util.Date;
+import java.util.List;
 
 /**
- * Created by smand6 on 9/1/2014.
+ * Created by Tonny on 9/1/2014.
  */
 public class DailyRecords {
     private long id;
     private String description;
     private double amount;
     private long payerId;
+    private List<Long> participantIdList;
     private long expanseId;
     private Date createDate;
     private Date updateDate;
@@ -62,6 +64,14 @@ public class DailyRecords {
 
     public void setPayerId(long payerId) {
         this.payerId = payerId;
+    }
+
+    public List<Long> getParticipantIdList() {
+        return participantIdList;
+    }
+
+    public void setParticipantIdList(List<Long> participantIdList) {
+        this.participantIdList = participantIdList;
     }
 
     public long getExpanseId() {

@@ -9,12 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.tonny.myapps.expansecalculator.utills.ExpanseDBManager;
+import com.tonny.myapps.expansecalculator.utills.ExpenseDBManager;
 
 
 public class ExpanseCalculatorActivity extends Activity {
     TextView tvErrorMessage;
-    ExpanseDBManager expanseDBManager;
+    ExpenseDBManager expenseDBManager;
 
 
     @Override

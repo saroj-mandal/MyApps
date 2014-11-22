@@ -10,4 +10,35 @@
         android:layout_height="wrap_content"
         android:text="Have some on else in the list let's include him"
         android:layout_gravity="center" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="First Name"
+        android:ems="10"
+        android:id="@+id/etFirstName" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Surname"
+        android:ems="10"
+        android:id="@+id/etSurname" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="Email Id"
+        android:ems="10"
+        android:id="@+id/etEmailId" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Person to Expanse"
+        android:id="@+id/btAddPerson"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

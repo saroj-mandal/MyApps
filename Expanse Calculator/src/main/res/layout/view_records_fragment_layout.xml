@@ -45,9 +45,16 @@
         android:hint="to"
         android:inputType="date" />
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/etFromDate"
-        android:layout_centerHorizontal="true"></TableLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:id="@+id/tlRecordHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/etFromDate"
+            android:shrinkColumns="*"
+            android:stretchColumns="*"></TableLayout>
+    </ScrollView>
 </RelativeLayout>

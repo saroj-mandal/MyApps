@@ -11,9 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.tonny.myapps.expansecalculator.beans.Expanse;
+import com.tonny.myapps.expansecalculator.beans.Expense;
 import com.tonny.myapps.expansecalculator.helper.ExpanseHelper;
-import com.tonny.myapps.expansecalculator.utills.ExpanseDBManager;
+import com.tonny.myapps.expansecalculator.utills.ExpenseDBManager;
 
 /**
  * Created by Tonny on 02-09-2014.
@@ -23,7 +23,7 @@ public class CreateExpanseActivity extends Activity {
     EditText expanseDesc;
     Button submitExpanse;
     SharedPreferences.Editor shPrefEditor;
-    ExpanseDBManager expanseDBManager;
+    ExpenseDBManager expenseDBManager;
     SharedPreferences sharedPreferences;
     ExpanseHelper expanseHelper = ExpanseHelper.getInstance();
 
@@ -33,7 +33,7 @@ public class CreateExpanseActivity extends Activity {
         setContentView(R.layout.activity_create_expanse);
         initializeFields();
         sharedPreferences = getBaseContext().getSharedPreferences("isFirstTimeAppLaunch", MODE_PRIVATE);
-        expanseDBManager = new ExpanseDBManager(getApplicationContext());
+        expenseDBManager = new ExpenseDBManager(getApplicationContext());
     }
 
     private void initializeFields() {
@@ -53,17 +53,17 @@ public class CreateExpanseActivity extends Activity {
     }
 
     private void createNewExpanse() {
-        Expanse expanse = new Expanse();
+        Expense expense = new Expense();
         if (!expanseHelper.isEmptyEditText(expanseName)) {
-            expanse.setName(expanseName.getText().toString());
-            expanse.setDescription(expanseDesc.getText().toString());
-            expanseDBManager.createExpanse(expanse);
+            expense.setName(expanseName.getText().toString());
+            expense.setDescription(expanseDesc.getText().toString());
+            expenseDBManager.createExpense(expense);
             shPrefEditor = sharedPreferences.edit();
             shPrefEditor.putBoolean("isFirstTimeAppLaunch", false);
             shPrefEditor.commit();
+            finish();
             Intent openExpanseHomeActivity = new Intent(this, ExpanseHomeActivity.class);
             startActivity(openExpanseHomeActivity);
-            finish();
         } else {
             final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setTitle("Error :(");

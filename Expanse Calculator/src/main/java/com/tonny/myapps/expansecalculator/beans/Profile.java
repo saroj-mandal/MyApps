@@ -3,7 +3,7 @@ package com.tonny.myapps.expansecalculator.beans;
 import java.util.Date;
 
 /**
- * Created by smand6 on 9/1/2014.
+ * Created by Tonny on 9/1/2014.
  */
 public class Profile {
     private long id;
@@ -12,6 +12,7 @@ public class Profile {
     private String emailId;
     private Date createDate;
     private Date updateDate;
+    private boolean checked;
 
     public Profile() {
 
@@ -21,8 +22,7 @@ public class Profile {
         this.firstName = firstName;
     }
 
-    public Profile(long id, String firstName, String lastName, String emailId) {
-        this.id = id;
+    public Profile(String firstName, String lastName, String emailId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
@@ -60,6 +60,14 @@ public class Profile {
         this.emailId = emailId;
     }
 
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
     public Date getCreateDate() {
         return createDate;
     }
@@ -74,5 +82,9 @@ public class Profile {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public void toggle() {
+        setChecked(!isChecked());
     }
 }

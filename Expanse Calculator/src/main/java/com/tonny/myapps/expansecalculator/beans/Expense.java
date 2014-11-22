@@ -6,22 +6,22 @@ import java.util.Date;
 /**
  * Created by smand6 on 9/1/2014.
  */
-public class Expanse {
+public class Expense {
     private long id;
     private String name;
     private String description;
     private Date createDate;
     private Date updateDate;
 
-    public Expanse() {
+    public Expense() {
 
     }
 
-    public Expanse(String name) {
+    public Expense(String name) {
         this.name = name;
     }
 
-    public Expanse(long id, String name, String description) {
+    public Expense(long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
