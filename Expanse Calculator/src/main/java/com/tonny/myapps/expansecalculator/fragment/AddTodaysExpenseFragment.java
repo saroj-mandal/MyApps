@@ -7,19 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.tonny.myapps.expansecalculator.R;
-import com.tonny.myapps.expansecalculator.adapter.ExpanseListAdapter;
 import com.tonny.myapps.expansecalculator.adapter.ParticipantListAdapter;
-import com.tonny.myapps.expansecalculator.adapter.UserListAdapter;
 import com.tonny.myapps.expansecalculator.beans.DailyRecords;
-import com.tonny.myapps.expansecalculator.beans.Expense;
 import com.tonny.myapps.expansecalculator.beans.Profile;
-import com.tonny.myapps.expansecalculator.helper.ExpanseHelper;
+import com.tonny.myapps.expansecalculator.helper.ExpenseHelper;
+import com.tonny.myapps.expansecalculator.helper.MasterObject;
 import com.tonny.myapps.expansecalculator.utills.ExpenseDBManager;
 
 import java.util.ArrayList;
@@ -28,14 +25,15 @@ import java.util.List;
 /**
  * Created by Tonny on 07-09-2014.
  */
-public class AddTodaysExpanseFragment extends Fragment {
+public class AddTodaysExpenseFragment extends Fragment {
     ListView participant;
     ListView contributor;
     Button submitTodaysSpending;
     EditText amount;
     ExpenseDBManager expenseDBManager;
     List<Profile> participantList;
-    ExpanseHelper expanseHelper = ExpanseHelper.getInstance();
+    ExpenseHelper expenseHelper = ExpenseHelper.getInstance();
+    MasterObject masterObject = MasterObject.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,13 +54,13 @@ public class AddTodaysExpanseFragment extends Fragment {
         submitTodaysSpending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!expanseHelper.isEmptyEditText(amount)) {
+                if (!expenseHelper.isEmptyEditText(amount)) {
                     if (contributorListAdapter.getCount() > 0 && participantListAdapter.getCount() > 0) {
                         DailyRecords dailyRecords = new DailyRecords();
                         List<Long> participantIdList = new ArrayList<Long>();
                         for (int count = 0; count < contributorListAdapter.getCount(); count++) {
                             Profile profile = contributorListAdapter.getItem(count);
-                            dailyRecords.setAmount(Integer.parseInt(expanseHelper.getEditTextValue(amount)));
+                            dailyRecords.setAmount(Integer.parseInt(expenseHelper.getEditTextValue(amount)));
                             dailyRecords.setPayerId(profile.getId());
                             dailyRecords.setExpanseId(expenseId);
                         }
@@ -72,23 +70,26 @@ public class AddTodaysExpanseFragment extends Fragment {
                         }
                         dailyRecords.setParticipantIdList(participantIdList);
                         if (expenseDBManager.createDailyRecords(dailyRecords) > 0) {
+                            if (null != masterObject.getExpenseRecords() && null != masterObject.getExpenseRecords().get(expenseId)) {
+                                masterObject.getExpenseRecords().get(expenseId).add(dailyRecords);
+                            }
                             String title = "Success";
-                            String message = "Amount Rs. " + expanseHelper.getEditTextValue(amount)
+                            String message = "Amount Rs. " + expenseHelper.getEditTextValue(amount)
                                     + "added to :" + expenseId;
                             String buttonLabel = "Dismiss";
-                            expanseHelper.showAlert(getActivity(), title, message, buttonLabel);
+                            expenseHelper.showAlert(getActivity(), title, message, buttonLabel);
                         }
                     } else {
                         String title = "Error";
                         String message = "You have to select at least one participant and contributor";
                         String buttonLabel = "Dismiss";
-                        expanseHelper.showAlert(getActivity(), title, message, buttonLabel);
+                        expenseHelper.showAlert(getActivity(), title, message, buttonLabel);
                     }
                 } else {
                     String title = "Error";
                     String message = "Amount can't be empty";
                     String buttonLabel = "Dismiss";
-                    expanseHelper.showAlert(getActivity(), title, message, buttonLabel);
+                    expenseHelper.showAlert(getActivity(), title, message, buttonLabel);
                 }
             }
         });

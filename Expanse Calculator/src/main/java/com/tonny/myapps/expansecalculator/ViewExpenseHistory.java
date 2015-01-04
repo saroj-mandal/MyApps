@@ -2,21 +2,19 @@ package com.tonny.myapps.expansecalculator;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 
-import com.tonny.myapps.expansecalculator.adapter.ViewExpanseTabsPagerAdapter;
+import com.tonny.myapps.expansecalculator.adapter.ViewExpenseTabsPagerAdapter;
 
 /**
  * Created by Tonny on 9/4/2014.
  */
-public class ViewExpanseHistory extends FragmentActivity implements ActionBar.TabListener {
+public class ViewExpenseHistory extends FragmentActivity implements ActionBar.TabListener {
     private ViewPager viewRecordsViewPager;
     private ActionBar viewRecordsActionBar;
-    private ViewExpanseTabsPagerAdapter viewExpanseTabsPagerAdapter;
+    private ViewExpenseTabsPagerAdapter viewExpenseTabsPagerAdapter;
 
     // Tab titles
     private String[] tabs = {"Records", "Entry", "Add Person"};
@@ -27,9 +25,9 @@ public class ViewExpanseHistory extends FragmentActivity implements ActionBar.Ta
         setContentView(R.layout.activity_view_records);
         // Initialization
         viewRecordsViewPager = (ViewPager) findViewById(R.id.vpViewRecordsTabPager);
-        viewExpanseTabsPagerAdapter = new ViewExpanseTabsPagerAdapter(getSupportFragmentManager());
+        viewExpenseTabsPagerAdapter = new ViewExpenseTabsPagerAdapter(getSupportFragmentManager());
         viewRecordsActionBar = getActionBar();
-        viewRecordsViewPager.setAdapter(viewExpanseTabsPagerAdapter);
+        viewRecordsViewPager.setAdapter(viewExpenseTabsPagerAdapter);
         viewRecordsActionBar.setHomeButtonEnabled(false);
         viewRecordsActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 

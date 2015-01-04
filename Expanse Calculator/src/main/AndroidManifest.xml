@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ExpanseCalculatorActivity"
+            android:name=".ExpenseCalculatorActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,14 +17,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreateExpanseActivity"
-            android:parentActivityName=".ExpanseCalculatorActivity" />
+            android:name=".CreateExpenseActivity"
+            android:parentActivityName=".ExpenseCalculatorActivity" />
         <activity
-            android:name=".ExpanseHomeActivity"
-            android:parentActivityName=".ExpanseCalculatorActivity" />
+            android:name=".ExpenseHomeActivity"
+            android:parentActivityName=".ExpenseCalculatorActivity" />
         <activity
-            android:name=".ViewExpanseHistory"
-            android:parentActivityName=".ExpanseHomeActivity" />
+            android:name=".ViewExpenseHistory"
+            android:parentActivityName=".ExpenseHomeActivity" />
 
     </application>
 

@@ -4,14 +4,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.tonny.myapps.expansecalculator.fragment.ExpanseListFragment;
+import com.tonny.myapps.expansecalculator.fragment.ExpenseListFragment;
 import com.tonny.myapps.expansecalculator.fragment.PersonsFragment;
 
 /**
  * Created by Tonny on 07-09-2014.
  */
-public class ExpanseHomeTabsPagerAdapter extends FragmentPagerAdapter {
-    public ExpanseHomeTabsPagerAdapter(FragmentManager fragmentManager) {
+public class ExpenseHomeTabsPagerAdapter extends FragmentPagerAdapter {
+    public ExpenseHomeTabsPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 
@@ -20,7 +20,7 @@ public class ExpanseHomeTabsPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 // Expense list fragment activity
-                return new ExpanseListFragment();
+                return new ExpenseListFragment();
             case 1:
                 // Add person to Expense fragment activity
                 return new PersonsFragment();

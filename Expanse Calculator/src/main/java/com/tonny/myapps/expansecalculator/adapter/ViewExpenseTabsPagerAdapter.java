@@ -4,15 +4,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.tonny.myapps.expansecalculator.fragment.AddPersonToExpanseFragment;
-import com.tonny.myapps.expansecalculator.fragment.AddTodaysExpanseFragment;
+import com.tonny.myapps.expansecalculator.fragment.AddPersonToExpenseFragment;
+import com.tonny.myapps.expansecalculator.fragment.AddTodaysExpenseFragment;
 import com.tonny.myapps.expansecalculator.fragment.RecordsHistoryFragment;
 
 /**
  * Created by Tonny on 07-09-2014.
  */
-public class ViewExpanseTabsPagerAdapter extends FragmentPagerAdapter {
-    public ViewExpanseTabsPagerAdapter(FragmentManager fragmentManager) {
+public class ViewExpenseTabsPagerAdapter extends FragmentPagerAdapter {
+    public ViewExpenseTabsPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 
@@ -24,10 +24,10 @@ public class ViewExpanseTabsPagerAdapter extends FragmentPagerAdapter {
                 return new RecordsHistoryFragment();
             case 1:
                 // Add today's expanses fragment activity
-                return new AddTodaysExpanseFragment();
+                return new AddTodaysExpenseFragment();
             case 2:
                 // Add person to expanse fragment activity
-                return new AddPersonToExpanseFragment();
+                return new AddPersonToExpenseFragment();
         }
         return null;
     }

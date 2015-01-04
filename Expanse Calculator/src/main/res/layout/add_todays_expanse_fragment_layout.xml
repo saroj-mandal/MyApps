@@ -1,47 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Let's See Whose day it is!"
-        android:layout_gravity="center" />
+        android:layout_alignLeft="@+id/btSubmitTodaysSpending"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btSubmitTodaysSpending"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="17dp"
+        android:text="Let's See Whose day it is!" />
 
     <EditText
+        android:id="@+id/etAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/etAmount"
-        android:hint="Amount"
-        android:ems="10" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Amount" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lvContributor"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:text="Contributors" />
 
     <ListView
+        android:id="@+id/lvContributor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lvContributor"></ListView>
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView3"
+        android:layout_gravity="left|center_vertical"></ListView>
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etAmount"
+        android:layout_gravity="center"
+        android:layout_marginTop="17dp"
         android:text="Participants" />
 
     <ListView
+        android:id="@+id/lvParticipant"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lvParticipant"></ListView>
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginTop="17dp"></ListView>
+
 
     <Button
+        android:id="@+id/btSubmitTodaysSpending"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit Today's Spending"
-        android:id="@+id/btSubmitTodaysSpending"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="Submit Today's Spending" />
+
+</RelativeLayout>

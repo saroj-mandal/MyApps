@@ -1,9 +1,8 @@
 package com.tonny.myapps.expansecalculator.fragment;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,19 +14,22 @@ import android.widget.EditText;
 
 import com.tonny.myapps.expansecalculator.R;
 import com.tonny.myapps.expansecalculator.beans.Profile;
-import com.tonny.myapps.expansecalculator.helper.ExpanseHelper;
+import com.tonny.myapps.expansecalculator.helper.ExpenseHelper;
+import com.tonny.myapps.expansecalculator.helper.MasterObject;
 import com.tonny.myapps.expansecalculator.utills.ExpenseDBManager;
 
 /**
  * Created by Tonny on 07-09-2014.
  */
-public class AddPersonToExpanseFragment extends Fragment {
+public class AddPersonToExpenseFragment extends Fragment {
     EditText firstName;
     EditText surname;
     EditText emailId;
     Button addPersonToExpanse;
-    ExpanseHelper expanseHelper = ExpanseHelper.getInstance();
+    ExpenseHelper expenseHelper = ExpenseHelper.getInstance();
+    MasterObject masterObject = MasterObject.getInstance();
     ExpenseDBManager expenseDBManager;
+    long expenseId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,14 +37,14 @@ public class AddPersonToExpanseFragment extends Fragment {
         initializeFields(addPersonView);
         Intent viewHistoryIntent = getActivity().getIntent();
         Bundle expanseDetailsBundle = viewHistoryIntent.getExtras();
-        final long expenseId = expanseDetailsBundle.getLong("expenseId");
+        expenseId = expanseDetailsBundle.getLong("expenseId");
         addPersonToExpanse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createProfile(expenseId);
+                AddPersonAsyncTask addPersonAsyncTask = new AddPersonAsyncTask();
+                addPersonAsyncTask.execute();
             }
         });
-        expenseDBManager = new ExpenseDBManager(getActivity().getApplicationContext());
         return addPersonView;
     }
 
@@ -58,18 +60,44 @@ public class AddPersonToExpanseFragment extends Fragment {
     }
 
     private void createProfile(long expenseId) {
-        if (!expanseHelper.isEmptyEditText(firstName)) {
-            String fName = expanseHelper.getEditTextValue(firstName);
-            String sName = expanseHelper.getEditTextValue(surname);
-            String email = expanseHelper.getEditTextValue(emailId);
+        if (!expenseHelper.isEmptyEditText(firstName)) {
+            String fName = expenseHelper.getEditTextValue(firstName);
+            String sName = expenseHelper.getEditTextValue(surname);
+            String email = expenseHelper.getEditTextValue(emailId);
             Profile newMember = new Profile(fName, sName, email);
             long profileId = expenseDBManager.createNewProfile(newMember);
             expenseDBManager.createUserToExpenseRelation(expenseId, profileId);
+            if (null != masterObject.getMemberList()) {
+                masterObject.getMemberList().add(newMember);
+            }
         } else {
             String title = "Error :(";
             String message = "Name can't be empty";
             String buttonLabel = "OK";
-            expanseHelper.showAlert(getActivity(), title, message, buttonLabel);
+            expenseHelper.showAlert(getActivity(), title, message, buttonLabel);
+        }
+    }
+
+    private class AddPersonAsyncTask extends AsyncTask<Void, Void, Void> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = expenseHelper.showProgressBar(getActivity());
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            expenseDBManager = new ExpenseDBManager(getActivity());
+            createProfile(expenseId);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            expenseHelper.hideProgressBar(progressDialog);
         }
     }
 

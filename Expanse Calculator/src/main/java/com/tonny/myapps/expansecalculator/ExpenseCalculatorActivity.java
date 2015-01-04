@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.tonny.myapps.expansecalculator.utills.ExpenseDBManager;
 
 
-public class ExpanseCalculatorActivity extends Activity {
+public class ExpenseCalculatorActivity extends Activity {
     TextView tvErrorMessage;
     ExpenseDBManager expenseDBManager;
 
@@ -25,7 +25,7 @@ public class ExpanseCalculatorActivity extends Activity {
         if (isFirstTimeAppLaunch) {
             setContentView(R.layout.activity_welcome_expanse_calculator);
         } else {
-            Intent openExpanseHomeActivity = new Intent(this, ExpanseHomeActivity.class);
+            Intent openExpanseHomeActivity = new Intent(this, ExpenseHomeActivity.class);
             startActivity(openExpanseHomeActivity);
             finish();
         }
@@ -34,7 +34,7 @@ public class ExpanseCalculatorActivity extends Activity {
     public void clickHandler(View view) {
         switch (view.getId()) {
             case R.id.btCreateExpanse:
-                Intent createExpanseIntent = new Intent(this, CreateExpanseActivity.class);
+                Intent createExpanseIntent = new Intent(this, CreateExpenseActivity.class);
                 startActivity(createExpanseIntent);
                 break;
             default:
